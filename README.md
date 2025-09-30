@@ -3,5 +3,10 @@ This code contains the REST API application that applies the concept of Command 
 
 This project is to demonstrate my understanding of this pattern that is used in heavily-relied business applications such as eCommerce, Finance and more.
 
+### Architecture
+This branch contains no CQRS architecture. The architecture diagram is as below:
+![No CQRS Architecture Diagram](/images/No%20CQRS.drawio.png)
+
+
 ### Developer
 Adrian Joseph.
