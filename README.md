@@ -4,8 +4,8 @@ This code contains the REST API application that applies the concept of Command 
 This project is to demonstrate my understanding of this pattern that is used in heavily-relied business applications such as eCommerce, Finance and more.
 
 ### Architecture
-This branch contains Simple CQRS architecture. The architecture diagram is as below:
-![Simple CQRS Architecture Diagram](/images/Simple%20CQRS.png)
+This branch contains Evolving CQRS architecture. The architecture diagram is as below:
+![Evolving CQRS Architecture Diagram](/images/Evolving%20CQRS.png)
 
 
 ### Developer
