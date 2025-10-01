@@ -4,13 +4,13 @@ This code contains the REST API application that applies the concept of Command 
 This project is to demonstrate my understanding of this pattern that is used in heavily-relied business applications such as eCommerce, Finance and more.
 
 ### Architecture
-This branch contains Events CQRS architecture. The architecture diagram is as below:
+This branch contains Split Database CQRS architecture. The architecture diagram is as below:
 
 It uses "FluentValidator" package/library for it. You may use EntityFramework Core's validator if you want to but that's to implement constraints and validation before entering the data into the database.
 
-This is an example of how events are used to emit when an "order" is created.
+This is an example of how events are used to emit when an "order" is created. This branch also splits the database which is crucial in CQRS architecture which is "Read" database & "Write" database.
 
-![Orders CQRS Architecture Diagram](/images/Events%20CQRS.png)
+![Split Database CQRS Architecture Diagram](/images/Split%20of%20Databases%20CQRS.png)
 
 
 ### Developer
