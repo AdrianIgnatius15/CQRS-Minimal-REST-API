@@ -8,7 +8,7 @@ This branch contains Orders CQRS architecture. The architecture diagram is as be
 
 It uses "FluentValidator" package/library for it. You may use EntityFramework Core's validator if you want to but that's to implement constraints and validation before entering the data into the database.
 
-![Orders CQRS Architecture Diagram](/images/Validator%20CQRS.png)
+![Orders CQRS Architecture Diagram](/images/Orders%20CQRS.png)
 
 
 ### Developer
