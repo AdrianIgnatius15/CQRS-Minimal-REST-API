@@ -2,28 +2,11 @@ using FluentValidation;
 
 public class CreateOrderCommandHandler : ICommandHandler<CreateOrderCommand, OrderDto>
 {
-    // public static async Task<Order> Handle(CreateOrderCommand command, AppDbContext context)
-    // {
-    //     var order = new Order
-    //     {
-    //         FirstName = command.FirstName,
-    //         LastName = command.LastName,
-    //         Status = command.Status,
-    //         CreatedAt = DateTime.UtcNow,
-    //         TotalCost = command.TotalCost
-    //     };
-
-    //     await context.Orders.AddAsync(order);
-    //     await context.SaveChangesAsync();
-
-    //     return order;
-    // }
-
-    private readonly AppDbContext _context;
+    private readonly WriteDbContext _context;
     private readonly IValidator<CreateOrderCommand> _validator;
     private readonly IEventPublisher _eventPublisher;
 
-    public CreateOrderCommandHandler(AppDbContext context, IValidator<CreateOrderCommand> validator, IEventPublisher eventPublisher)
+    public CreateOrderCommandHandler(WriteDbContext context, IValidator<CreateOrderCommand> validator, IEventPublisher eventPublisher)
     {
         _context = context;
         _validator = validator;

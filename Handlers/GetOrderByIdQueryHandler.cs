@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 public class GetOrderByIdQueryHandler : IQueryHandler<GetOrderByIdQuery, OrderDto>
 {
-    private readonly AppDbContext _context;
+    private readonly ReadDbContext _context;
 
-    // public static async Task<Order?> Handle(GetOrderByIdQuery query, AppDbContext context)
+    // public static async Task<Order?> Handle(GetOrderByIdQuery query, ReadDbContext context)
     // => await context.Orders.FirstOrDefaultAsync(order => order.Id == query.OrderId);
 
-    public GetOrderByIdQueryHandler(AppDbContext context)
+    public GetOrderByIdQueryHandler(ReadDbContext context)
     {
         _context = context;
     }
