@@ -1,4 +1,6 @@
-public class OrderCreatedProjectionHandler : IEventHandler<OrderCreatedEvent>
+using MediatR;
+
+public class OrderCreatedProjectionHandler : INotificationHandler<OrderCreatedEvent>
 {
     private readonly ReadDbContext _context;
 
@@ -7,7 +9,7 @@ public class OrderCreatedProjectionHandler : IEventHandler<OrderCreatedEvent>
         _context = context;
     }
 
-    public async Task HandleAsync(OrderCreatedEvent evt)
+    public async Task Handle(OrderCreatedEvent evt, CancellationToken cancellationToken)
     {
         var order = new Order
         {
@@ -19,7 +21,7 @@ public class OrderCreatedProjectionHandler : IEventHandler<OrderCreatedEvent>
             TotalCost = evt.TotalCost
         };
 
-        await _context.Orders.AddAsync(order);
-        await _context.SaveChangesAsync();
+        await _context.Orders.AddAsync(order, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }

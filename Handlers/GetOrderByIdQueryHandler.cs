@@ -1,5 +1,6 @@
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-public class GetOrderByIdQueryHandler : IQueryHandler<GetOrderByIdQuery, OrderDto>
+public class GetOrderByIdQueryHandler : IRequestHandler<GetOrderByIdQuery, OrderDto?>
 {
     private readonly ReadDbContext _context;
 
@@ -11,10 +12,11 @@ public class GetOrderByIdQueryHandler : IQueryHandler<GetOrderByIdQuery, OrderDt
         _context = context;
     }
 
-    public async Task<OrderDto?> HandleAsync(GetOrderByIdQuery query)
+    public async Task<OrderDto?> Handle(GetOrderByIdQuery query, CancellationToken cancellationToken)
     {
         var order = await _context.Orders
-            .FirstOrDefaultAsync(order => order.Id == query.OrderId);
+            .AsNoTracking()
+            .FirstOrDefaultAsync(order => order.Id == query.OrderId, cancellationToken);
 
         if (order == null)
         {

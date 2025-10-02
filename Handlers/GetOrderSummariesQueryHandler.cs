@@ -1,5 +1,6 @@
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-public class GetOrderSummariesQueryHandler : IQueryHandler<GetOrderSummariesQuery, List<OrderSummaryDto>>
+public class GetOrderSummariesQueryHandler : IRequestHandler<GetOrderSummariesQuery, List<OrderSummaryDto>>
 {
     public readonly ReadDbContext _context;
 
@@ -8,7 +9,7 @@ public class GetOrderSummariesQueryHandler : IQueryHandler<GetOrderSummariesQuer
         _context = context;
     }
 
-    public async Task<List<OrderSummaryDto>?> HandleAsync(GetOrderSummariesQuery query)
+    public async Task<List<OrderSummaryDto>> Handle(GetOrderSummariesQuery query, CancellationToken cancellationToken)
     {
         return await _context.Orders.Select(order => new OrderSummaryDto
         {
@@ -16,6 +17,8 @@ public class GetOrderSummariesQueryHandler : IQueryHandler<GetOrderSummariesQuer
             CustomerName = order.FirstName + " " + order.LastName,
             Status = order.Status,
             TotalCost = order.TotalCost
-        }).ToListAsync();
+        })
+        .AsNoTracking()
+        .ToListAsync(cancellationToken);
     }
 }
