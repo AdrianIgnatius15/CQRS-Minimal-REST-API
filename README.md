@@ -12,6 +12,29 @@ This is an example of how events are used to emit when an "order" is created. Th
 
 ![Split Database CQRS Architecture Diagram](/images/Split%20of%20Databases%20CQRS.png)
 
+##### Creating Migrations Using EntityFramework Core
+Since the database is split into 2, meaning it should have a "Read" database and "Write" database. In this case, when creating migrations using EntityFramework Core library to create database, use this command below.
+
+```console
+dotnet ef migrations add ReadDbMigrations --context ReadDbContext --output-dir Migrations/Read
+```
+
+```console
+dotnet ef migrations add WriteDbMigrations --context WriteDbContext --output-dir Migrations/Write
+```
+
+This will create the migrations to be applied on the database in the Migrations>Read/Write folders separately. Then, to apply them type and execute the following command line.
+
+```console
+dotnet ef database update --context WriteDbContext
+```
+
+```console
+dotnet ef database update --context ReadDbContext
+```
+
+This will apply the migrations into their specific database context which is coded inside "Data" folder
+
 
 ### Developer
 Adrian Joseph.
